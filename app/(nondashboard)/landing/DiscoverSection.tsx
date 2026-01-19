@@ -1,10 +1,6 @@
 "use client"
-
-import React from 'react'
 import {motion} from "framer-motion"
 import Image from 'next/image';
-import Link from 'next/link';
-import { Search } from 'lucide-react';
 
 
 const containerVariant = {
@@ -52,28 +48,26 @@ const DiscoverSection = () => {
                 </p>
             </motion.div>
 
-            <div className=' grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 xl:gap-16'>
-                {[0,1,2].map((index) => (
+            <div className=' grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 text-center'>
+                {[
+                    {
+                        imageSrc:"/landing-icon-wand.png",
+                        title:"Book Your Rental",
+                        discription: "Once you've found the perfect rental property, easily book it online with just few clicks."
+                    },
+                    {
+                        imageSrc:"/landing-icon-calendar.png",
+                        title:"Search for properties",
+                        discription: "Browse through our extensive collection of rental properties in your desired location."
+                    },
+                    {
+                        imageSrc:"/landing-icon-heart.png",
+                        title:"Enjoy Your New Home",
+                        discription: "Move into you new rental property and start enjoying your dream home."
+                    },
+                ].map((card, index) => (
                     <motion.div key={index} variants={itemVariant}>
-                        <FeatureCard
-                            imageSrc={`/landing-search${3 - index}.png`} 
-                            title={
-                                [
-                                    "TrushWorthy and verified Listings",
-                                    "Browse Rental Listing with Ease",
-                                    "Simplify Your Rental Search with Advance"
-                                ][index]
-                            }
-                            discription={
-                                [
-                                    "Descover the best rental option with user review and ratings",
-                                    "GEt access to user review and rating for a better understandingof rental option.",
-                                    "Find trustworthy and verified rental listing to ensure a hassle-free exprence."
-                                ][index]
-                            }
-                            linkText={["Explore", "Search", "Discover"][index]}
-                            linkHref={["/explore", "/search", "/discover"][index]}
-                        />
+                        <DiscoverCard {...card}/>
                     </motion.div>
                 ))}
             </div>
@@ -83,38 +77,29 @@ const DiscoverSection = () => {
   )
 }
 
-const FeatureCard =({
+const DiscoverCard =({
     imageSrc,
     title,
     discription,
-    linkText,
-    linkHref
 }:{
     imageSrc:string,
     title:string,
     discription:string,
-    linkText:string,
-    linkHref:string
 }) => (
-    <div className='text-center '>
-        <div className='p-4 rounded-lg mb-4 item-center justify-center h-48'>
+    <div className='px-4 py-12 shadow-lg rounded-lg bg-primary-50 md:h-72'>
+        <div className='bg-gray-700 p-[0.6rem] rounded-full  mb-4 h-10 w-10 mx-auto'>
             <Image
                 src={imageSrc}
                 alt={title}
-                width={400}
-                height={400}
-                className='w-full h-full object-contain'
+                width={30}
+                height={30}
+                className='w-full h-full'
             />
         </div>
-        <h3 className='text-xl font-semibold mb-2'>
+        <h3 className='mt-4 text-xl font-medium text-gray-800 '>
             {title}
         </h3>
-        <p className='mb-4 '>{discription}</p>
-        <Link 
-            href={linkHref}
-            className=' inline-block border border-gray-300 rounded px-4 py-2 hover:bg-gray-100'
-            scroll={false}
-        >{linkText}</Link>
+        <p className='mt-2 text-gray-500 '>{discription}</p>
     </div>
 )
 
