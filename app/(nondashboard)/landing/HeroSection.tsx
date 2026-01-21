@@ -1,11 +1,9 @@
 "use client"
 
 import Image from 'next/image'
-import React from 'react'
 import {motion} from "framer-motion"
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-react'
 
 const HeroSection = () => {
   return (
